@@ -1,0 +1,17 @@
+{
+  "name": "backend-contract",
+  "version": "1.0.0",
+  "description": "contract service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ermek Sariyev",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.14.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^12.0.0",
+    "pg": "^8.10.0"
+  }
+}

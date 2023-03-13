@@ -1,9 +1,18 @@
 const Koa = require('koa');
-const app = new Koa();
+const User = require('./models/user');
 
-app.use(async (ctx) => {
-  ctx.body = 'Привет, мир! и привет Ермек!';
-});
+async function syncDatabase() {
+  await User.sync();
+  console.log('All models were synchronized successfully.');
+}
 
-app.listen(3000);
-console.log('Сервер запущен на порту 3000');
+async function startServer() {
+  const app = new Koa();
+  // ... здесь настраиваем приложение ...
+  await syncDatabase();
+  app.listen(3000, () => {
+    console.log('Server started on port 3000');
+  });
+}
+
+startServer();

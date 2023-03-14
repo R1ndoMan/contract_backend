@@ -52,6 +52,7 @@ async function startServer() {
       ctx.body = users.rows.map((user) => user.name);
     } catch (error) {
       ctx.status = 500;
+      console.log(error);
       ctx.body = { message: 'Error retrieving users' };
     }
   });

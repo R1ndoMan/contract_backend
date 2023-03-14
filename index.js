@@ -47,13 +47,15 @@ async function startServer() {
 
   router.get('/all-users', async (ctx) => {
     try {
-      const result = await db.query('SELECT * FROM users ORDER BY name');
-      const users = result.rows.map(user => user.name);
-      ctx.body = users;
+      const users = await User.findAll();
+      ctx.status = 200;
+      ctx.body = {
+        message: 'Users found',
+        users: users,
+      };
     } catch (error) {
-      console.error(error);
-      ctx.status = 500;
-      ctx.body = 'Internal server error';
+      ctx.status = 400;
+      ctx.body = { message: error.message };
     }
   });
 

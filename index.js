@@ -46,6 +46,10 @@ async function startServer() {
   app.use(bodyParser());
   app.use(router.routes());
   app.use(router.allowedMethods());
+  
+  app.use(async (ctx)=>{
+    ctx.body = "Привет! все ок!";
+  });
 
   await User.sync();
   console.log('All models were synchronized successfully.');

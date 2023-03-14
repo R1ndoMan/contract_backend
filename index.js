@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const pg = require('pg');
 const User = require('./models/user');
 const sequelize = require('sequelize');
+const db = require('./db');
 
 async function startServer() {
   const app = new Koa();

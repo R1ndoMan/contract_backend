@@ -45,10 +45,15 @@ async function startServer() {
   });
 
   router.get('/all-users', async (ctx) => {
-    const users = await User.findAll({ where: { name: { [Op.ne]: null } } });
-  
-    // Отправляем ответ клиенту
-    ctx.body = users;
+    try {
+      const result = await db.query('SELECT * FROM users ORDER BY name');
+      const users = result.rows.map(user => user.name);
+      ctx.body = users;
+    } catch (error) {
+      console.error(error);
+      ctx.status = 500;
+      ctx.body = 'Internal server error';
+    }
   });
 
   app.use(bodyParser());

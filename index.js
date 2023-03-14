@@ -45,14 +45,9 @@ async function startServer() {
 
 
   router.get('/all-users', async (ctx) => {
-    try {
-      const users = await User.findAll();
-      ctx.status = 200;
-      ctx.body = users.map((user) => user.name);
-    } catch (error) {
-      ctx.status = 500;
-      ctx.body = { message: 'Error retrieving users' };
-    }
+    const users = await User.findAll();
+    const userNames = users.map((user) => user.name);
+    ctx.body = { users: userNames };
   });
 
   app.use(bodyParser());

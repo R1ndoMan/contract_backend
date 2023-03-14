@@ -4,7 +4,6 @@ const bodyParser = require('koa-bodyparser');
 const bcrypt = require('bcrypt');
 const pg = require('pg');
 const User = require('./models/user');
-const db = require('./db');
 
 async function startServer() {
   const app = new Koa();
@@ -44,14 +43,14 @@ async function startServer() {
     }
   });
 
+
   router.get('/all-users', async (ctx) => {
     try {
-      const users = await db.query('SELECT name FROM users');
+      const users = await User.findAll();
       ctx.status = 200;
-      ctx.body = users.rows.map((user) => user.name);
+      ctx.body = users.map((user) => user.name);
     } catch (error) {
       ctx.status = 500;
-      console.log(error);
       ctx.body = { message: 'Error retrieving users' };
     }
   });

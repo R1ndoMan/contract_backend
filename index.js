@@ -44,10 +44,7 @@ async function startServer() {
   });
 
   router.get('/all-users', async (ctx) => {
-    const name = ctx.query.name;
-  
-    // Ищем всех пользователей, у которых поле name совпадает со значением, указанным в запросе
-    const users = await User.findAll({ where: { name } });
+    const users = await User.findAll({ where: { name: { [Op.ne]: null } } });
   
     // Отправляем ответ клиенту
     ctx.body = users;

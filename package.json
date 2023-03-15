@@ -12,6 +12,7 @@
   "author": "Ermek Sariyev",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "koa": "^2.14.1",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^12.0.0",

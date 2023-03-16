@@ -5,7 +5,7 @@ const session = require('koa-session');
 const passport = require('koa-passport');
 const cors = require('koa-cors');
 const User = require('./models/user');
-const initializePassport = require('./passport-config');
+// const initializePassport = require('./passport-config');
 
 // Инициализация приложения и маршрутизатора
 const app = new Koa();

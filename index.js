@@ -4,6 +4,9 @@ const bodyParser = require('koa-bodyparser');
 const bcrypt = require('bcrypt');
 const pg = require('pg');
 const User = require('./models/user');
+const cors = require('@koa/cors');
+
+
 
 async function startServer() {
   const app = new Koa();
@@ -50,6 +53,8 @@ async function startServer() {
     ctx.body = { users: userNames };
   });
 
+
+  app.use(cors());
   app.use(bodyParser());
   app.use(router.routes());
   app.use(router.allowedMethods());
@@ -61,8 +66,8 @@ async function startServer() {
   await User.sync();
   console.log('All models were synchronized successfully.');
 
-  app.listen(3000, () => {
-    console.log('Server started on port 3000');
+  app.listen(2000, () => {
+    console.log('Server started on port 2000');
   });
 }
 

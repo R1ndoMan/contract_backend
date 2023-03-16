@@ -4,7 +4,7 @@ const bodyParser = require('koa-bodyparser');
 const bcrypt = require('bcrypt');
 const pg = require('pg');
 const User = require('./models/user');
-const cors = require('@koa/cors');
+const cors = require('koa-cors');
 
 
 
